@@ -8,6 +8,10 @@ export const descriptionSchema = z.object({
   property: z.string().trim().min(5).max(4_000)
 });
 
+export const descriptionSmallSchema = z.object({
+  property: z.string().trim().min(5).max(1_000)
+});
+
 export const propertyForSchema = z.object({
   property: z.enum([`rent`, `sell`])
 });

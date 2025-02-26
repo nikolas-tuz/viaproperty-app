@@ -14,6 +14,9 @@ import { SnackbarDataType } from '@/components/PropertyDescription/Layout/Proper
 import SnackbarMUI, { SnackBarSeverityType } from '@/components/UI/Snackbar/SnackbarMUI';
 import { contactsSchema } from '@/utils/schemas/sell/third-step/thirdFormSellSchemas';
 import { getLocalStorage, setToLocalStorage } from '@/utils/functions/setIntoLocalStorage';
+import ValidationParagraph from '@/components/Typography/ValidationParagraph';
+import { useValidation } from '@/hooks/custom-hooks/useValidateInput';
+import { descriptionSmallSchema } from '@/utils/schemas/sell/first-step/sellSchemasFirstStep';
 
 export type ContactAndViewingArrangementsType = {
   initials: string;
@@ -50,12 +53,21 @@ type ContactDetailType = {
 
 export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormType) {
   const [contactAndViewingArrangements, setContactAndViewingArrangements] = useState<ContactAndViewingArrangementsType[]>(defaultValues?.contactAndViewingArrangements || []);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [priceAndTaskHistory, setPriceAndTaskHistory] = useState<PriceAndTaskHistoryType | null>(defaultValues?.priceAndTaskHistory || null);
   const [floorPlans, setFloorPlans] = useState<FloorPlansType[]>(defaultValues?.floorPlans || []);
 
   const [snackbarState, setSnackbarState] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState<SnackbarDataType>({ severity: `error`, message: `` });
+
+  const {
+    value: priceAndTaskHistory,
+    setValue: setPriceAndTaskHistory,
+    validationStage: priceAndTaskHistoryInputStage
+  } = useValidation(
+    descriptionSmallSchema,
+    '',
+    true,
+    `propertyTaskHistory`
+  );
 
   const [extraNumberInputs, setExtraNumberInputs] = useState(0);
 
@@ -192,18 +204,22 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
           </Features>
         </form>
         <div className={`mb-9`}>
-          <h2 className={`text-2xl bg-clip-text text-transparent bg-linear-main-red font-bold mb-6`}>Price & Task
-            History</h2>
-          <p className={`leading-relaxed text-zinc-900 max-w-4xl`}>Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Alias consequuntur doloribus enim, fugiat harum incidunt maiores minus nulla provident <HighlightText
-              text={`quam quibusdam quod ratione saepe voluptatem?`} /></p>
+          <h2 className={`text-2xl bg-clip-text text-transparent bg-linear-main-red font-bold mb-6`}>Task
+            History (Optional)</h2>
+          <p className={`leading-relaxed text-zinc-900 max-w-4xl`}>Tell your potential customer a few words about task
+            history.</p>
         </div>
         <div className={`mb-12`}>
-          <LabelAndInput defaultValue={priceAndTaskHistory?.history} required inputType={`text`}
-                         labelStyle={`grey-and-small`} name={`propertyPriceHistory`}
-                         placeholder={`e.g. The task history of the property was..`}
-                         customClassNames={`max-w-[528px] h-[155px]`} type={`textarea`}
-                         label={`Tell us about your task history and property price`} />
+          <LabelAndInput
+            onChangeState={{ valueEntered: priceAndTaskHistory, setValueEntered: setPriceAndTaskHistory }}
+            defaultValue={priceAndTaskHistory}
+            inputType={`text`}
+            labelStyle={`grey-and-small`} name={`propertyPriceHistory`}
+            placeholder={`e.g. The task history of the property was..`}
+            customClassNames={`max-w-[528px] h-[155px]`} type={`textarea`}
+            label={`Tell us about your task history and property price`} />
+          <ValidationParagraph stage={priceAndTaskHistoryInputStage}
+                               text={`Please enter a value between 5 to 1000 characters.`} />
         </div>
         <div>
           <h2 className={`text-2xl bg-clip-text text-transparent bg-linear-main-red font-bold mb-6`}>Floor Plans
