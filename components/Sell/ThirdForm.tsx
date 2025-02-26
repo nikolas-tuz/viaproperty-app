@@ -1,22 +1,21 @@
 'use client';
 
 import { scrollIntoViewFunc } from '@/utils/functions/scrollIntoViewFunc';
-import HighlightText from '@/components/Typography/HighlightText';
 import TagBadge from '@/components/UI/Badge/TagBadge';
 import Features from '@/components/Sell/Features';
 import LabelAndInput from '@/components/UI/Input/LabelAndInput';
-import ChooseImage from '@/components/UI/Input/ChooseImage/ChooseImage';
 import { activeStateType } from '@/components/Sell/SellInputContent';
 import { setActiveStateFunc } from '@/utils/functions/sell/setActiveStateFunc';
 import Button from '@/components/UI/Button/Button';
 import { FormEvent, useEffect, useState } from 'react';
 import { SnackbarDataType } from '@/components/PropertyDescription/Layout/PropertyTags';
 import SnackbarMUI, { SnackBarSeverityType } from '@/components/UI/Snackbar/SnackbarMUI';
-import { contactsSchema } from '@/utils/schemas/sell/third-step/thirdFormSellSchemas';
+import { contactsSchema, floorPlanSchema } from '@/utils/schemas/sell/third-step/thirdFormSellSchemas';
 import { getLocalStorage, setToLocalStorage } from '@/utils/functions/setIntoLocalStorage';
 import ValidationParagraph from '@/components/Typography/ValidationParagraph';
 import { useValidation } from '@/hooks/custom-hooks/useValidateInput';
 import { descriptionSmallSchema } from '@/utils/schemas/sell/first-step/sellSchemasFirstStep';
+import ChooseFeatureImages, { ImagesArrayType } from '@/components/Sell/ChooseFeatureImages';
 
 export type ContactAndViewingArrangementsType = {
   initials: string;
@@ -30,7 +29,7 @@ export type PriceAndTaskHistoryType = {
 export type FloorPlansType = {
   heading: string;
   shortDescription: string;
-  images: string[];
+  images: ImagesArrayType[];
 };
 
 type ThirdFormType = {
@@ -54,6 +53,7 @@ type ContactDetailType = {
 export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormType) {
   const [contactAndViewingArrangements, setContactAndViewingArrangements] = useState<ContactAndViewingArrangementsType[]>(defaultValues?.contactAndViewingArrangements || []);
   const [floorPlans, setFloorPlans] = useState<FloorPlansType[]>(defaultValues?.floorPlans || []);
+  const [floorPlansImages, setFloorPlansImages] = useState<ImagesArrayType[]>([]);
 
   const [snackbarState, setSnackbarState] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState<SnackbarDataType>({ severity: `error`, message: `` });
@@ -73,7 +73,9 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
 
   useEffect(() => {
     const propertyContactsField = getLocalStorage(`propertyContactDetails`);
+    const propertyFloorPlansField = getLocalStorage(`propertyFloorPlans`);
     if (propertyContactsField) setContactAndViewingArrangements(propertyContactsField);
+    if (propertyFloorPlansField) setFloorPlans(propertyFloorPlansField);
   }, []);
 
   function setActiveStateDeclaration(activeState: activeStateType) {
@@ -132,6 +134,35 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
 
     handleSnackbarOpen(`success`, `A new contact "${initials} - (${[...phoneNumbers].toString()})" was successfully added.`);
     e.currentTarget.reset();
+  }
+
+  function handleAddNewFloorPlan(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const currObject = e.currentTarget;
+    const formData = new FormData(currObject);
+    const results = Object.fromEntries(formData.entries()) as { heading: string; shortDescription: string; };
+
+    const validate = floorPlanSchema.safeParse(results);
+
+    if (!validate.success) {
+      handleSnackbarOpen(`error`, validate.error.errors[0].message);
+      return;
+    }
+
+    if (floorPlansImages.length > 3) {
+      handleSnackbarOpen(`error`, `Please select up to 3 images.`);
+      return;
+    }
+    const { heading, shortDescription } = results;
+
+    const updatedFloorPlans = [...[...floorPlans], { heading, shortDescription, images: floorPlansImages }];
+    setFloorPlans(updatedFloorPlans);
+
+    setToLocalStorage('propertyFloorPlans', updatedFloorPlans);
+    setFloorPlansImages([]);
+
+    // resetting the form
+    currObject.reset();
   }
 
   return (
@@ -224,50 +255,46 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
         <div>
           <h2 className={`text-2xl bg-clip-text text-transparent bg-linear-main-red font-bold mb-6`}>Floor Plans
             (Optional)</h2>
-          <p className={`leading-relaxed text-zinc-900 max-w-4xl`}>Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Alias consequuntur doloribus enim, fugiat harum incidunt maiores minus nulla provident <HighlightText
-              text={`quam quibusdam quod ratione saepe voluptatem?`} /></p>
+          <p className={`leading-relaxed text-zinc-900 max-w-4xl`}>This field is absolutely optional, but feel free to
+            add your floor plans if this is necessary.</p>
           <div className={`mt-6 mb-9`}>
             <div className={`flex gap-3.5 items-center overflow-x-auto scrollbar-thin`}>
               {!floorPlans.length && (
                 <h2 className={`text-zinc-900 font-semibold`}>No floor plans added yet.</h2>
               )}
-              {(floorPlans && floorPlans.length > 0) && floorPlans.map((floorPlan, index) => (
-                <TagBadge setItems={excludeFloorPlan} key={index} label={floorPlan.heading} />
-              ))}
+              {(floorPlans && floorPlans.length > 0) && floorPlans.map((floorPlan, index) => {
+                console.log('floorPlan.heading:', floorPlan.heading);
+                return (
+                  <TagBadge setItems={excludeFloorPlan} key={index} label={floorPlan.heading} />
+                );
+              })}
             </div>
           </div>
-          <div>
+          <form onSubmit={handleAddNewFloorPlan}>
             <Features featureHeading={`Floor Plans`}>
               <LabelAndInput labelStyle={`grey-and-small`} name={`heading`} placeholder={`e.g. Overall Building`}
                              customClassNames={`bp-620:w-72 text-custom-medium`} label={`Heading`} inputType={`text`} />
-              <LabelAndInput type={`textarea`} labelStyle={`grey-and-small`} name={`short-description`}
+              <LabelAndInput type={`textarea`} labelStyle={`grey-and-small`} name={`shortDescription`}
                              placeholder={`e.g. This is the overall building floor plan.`}
                              customClassNames={`bp-620:w-72 h-36 text-custom-medium`} label={`Short Description`}
                              inputType={`text`} />
               <div className={`overflow-x-auto scrollbar-thin max-w-[270px]`}>
-                <ChooseImage
-                  imagesState={{
-                    setImages: () => {
-                    }, images: []
-                  }}
-                  max={3} min={0} />
+                <ChooseFeatureImages
+                  imagesState={{ images: floorPlansImages, setImages: setFloorPlansImages }}
+                  min={0} max={3} />
               </div>
               <div className={`mt-3`}>
-                <button type={`button`}
-                        className={`bg-clip-text text-lg text-transparent bg-linear-main-red font-bold`}>Add
+                <button className={`bg-clip-text text-lg text-transparent bg-linear-main-red font-bold`}>Add floor
+                  plan
                 </button>
               </div>
             </Features>
-          </div>
+          </form>
           <div className={`mt-12`}>
             {setActiveState && (
               <Button type={`button`} label={`Next`}
                 // @ts-ignore
                       onClick={() => setActiveStateDeclaration({ stepThree: `completed`, stepFour: `active` })} />
-            )}
-            {!setActiveState && (
-              <Button type={`button`} label={`Save Changes`} />
             )}
           </div>
         </div>
