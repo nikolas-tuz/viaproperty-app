@@ -9,6 +9,6 @@ export const contactsSchema = z.object({
 }, { message: `Each phone number should be unique.` });
 
 export const floorPlanSchema = z.object({
-  heading: z.string().min(1, `Please provide a valid heading from 1 to 100 characters.`).max(100, `Please provide a valid heading from 1 to 100 characters.`),
-  shortDescription: z.string().min(5, `A short description should be at least 5 characters.`).max(1000, `A short description should not exceed 1000 characters.`)
+  heading: z.string().trim().min(1, `Please provide a valid heading from 1 to 100 characters.`).max(100, `Please provide a valid heading from 1 to 100 characters.`),
+  shortDescription: z.string().trim().min(5, `A short description should be at least 5 characters.`).max(1000, `A short description should not exceed 1000 characters.`)
 });

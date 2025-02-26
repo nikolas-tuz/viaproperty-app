@@ -153,9 +153,21 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
       handleSnackbarOpen(`error`, `Please select up to 3 images.`);
       return;
     }
+
+
     const { heading, shortDescription } = results;
 
-    const updatedFloorPlans = [...[...floorPlans], { heading, shortDescription, images: floorPlansImages }];
+    for (const floorPlan of floorPlans) {
+      if (floorPlan.heading.includes(heading)) {
+        handleSnackbarOpen(`error`, `This heading is similar in other floor plan you added.`);
+        return;
+      }
+    }
+
+    const updatedFloorPlans = [...[...floorPlans], {
+      heading: heading?.trim(), shortDescription: shortDescription?.trim(),
+      images: floorPlansImages
+    }];
     setFloorPlans(updatedFloorPlans);
 
     setToLocalStorage('propertyFloorPlans', updatedFloorPlans);
@@ -184,7 +196,6 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
             )}
             {(contactAndViewingArrangements && contactAndViewingArrangements.length > 0) && contactAndViewingArrangements.map((contact, index) => {
                 const formattedPhones = contact.phones.map((item) => item.slice(0, 3) + `..` + item.slice(8, -1));
-                /*@ts-ignore*/
                 return (
                   <TagBadge tooltipText={`Click to delete. Details: ${contact.initials} - [${contact.phones.join(', ')}]`}
                             setItems={() => excludeContact(contact.initials)}
@@ -263,7 +274,6 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
                 <h2 className={`text-zinc-900 font-semibold`}>No floor plans added yet.</h2>
               )}
               {(floorPlans && floorPlans.length > 0) && floorPlans.map((floorPlan, index) => {
-                console.log('floorPlan.heading:', floorPlan.heading);
                 return (
                   <TagBadge setItems={excludeFloorPlan} key={index} label={floorPlan.heading} />
                 );
@@ -284,7 +294,8 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
                   min={0} max={3} />
               </div>
               <div className={`mt-3`}>
-                <button className={`bg-clip-text text-lg text-transparent bg-linear-main-red font-bold`}>Add floor
+                <button className={`bg-clip-text text-lg text-transparent bg-linear-main-red font-bold
+                transition-all duration-200 hover:animate-pulse`}>Add floor
                   plan
                 </button>
               </div>
