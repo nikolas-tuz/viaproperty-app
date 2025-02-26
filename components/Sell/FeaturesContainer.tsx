@@ -16,7 +16,7 @@ export default function FeaturesContainer({ children, heading }: FeaturesContain
         <ContainerBox
           questionMark={{
             visible: true,
-            content: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus eligendi labore veritatis.`
+            content: `Just enter a valid initials(1 to 100 characters) and at least 1 phone number related(max 3). You can add up to 2 contacts.`
           }}
           questionMarkVisibility={questionMarkVisibility}
           setQuestionMarkVisibility={setQuestionMarkVisibility}>

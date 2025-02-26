@@ -89,7 +89,8 @@ export default function LoginForm() {
     try {
       if (windowExists()) {
         setLoginLoading(() => true);
-        window.location.href = `https://viaproperty-nestjs.onrender.com/auth/google`;
+        // window.location.href = `https://viaproperty-nestjs.onrender.com/auth/google`;
+        window.location.href = `http://localhost:3001/auth/google`;
         /*if (process.env.NODE_ENV === `production`) {
           window.location.href = `https://viaproperty-nestjs.onrender.com/auth/google`;
         } else {

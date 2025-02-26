@@ -9,7 +9,10 @@ import ChooseImage from '@/components/UI/Input/ChooseImage/ChooseImage';
 import { activeStateType } from '@/components/Sell/SellInputContent';
 import { setActiveStateFunc } from '@/utils/functions/sell/setActiveStateFunc';
 import Button from '@/components/UI/Button/Button';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { SnackbarDataType } from '@/components/PropertyDescription/Layout/PropertyTags';
+import SnackbarMUI, { SnackBarSeverityType } from '@/components/UI/Snackbar/SnackbarMUI';
+import { contactsSchema } from '@/utils/schemas/sell/third-step/thirdFormSellSchemas';
 
 export type ContactAndViewingArrangementsType = {
   initials: string;
@@ -37,11 +40,23 @@ type ThirdFormType = {
   // children: ReactNode;
 }
 
+type ContactDetailType = {
+  initials: string;
+  phone1: string;
+  phone2?: string;
+  phone3?: string
+}
+
 export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormType) {
   const [contactAndViewingArrangements, setContactAndViewingArrangements] = useState<ContactAndViewingArrangementsType[]>(defaultValues?.contactAndViewingArrangements || []);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [priceAndTaskHistory, setPriceAndTaskHistory] = useState<PriceAndTaskHistoryType | null>(defaultValues?.priceAndTaskHistory || null);
   const [floorPlans, setFloorPlans] = useState<FloorPlansType[]>(defaultValues?.floorPlans || []);
+
+  const [snackbarState, setSnackbarState] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState<SnackbarDataType>({ severity: `error`, message: `` });
+
+  const [extraNumberInputs, setExtraNumberInputs] = useState(0);
 
   function setActiveStateDeclaration(activeState: activeStateType) {
     scrollIntoViewFunc(`.sell-heading`);
@@ -50,48 +65,114 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
     }
   }
 
-  function excludeContact(label: string) {
-    setContactAndViewingArrangements((prev) => prev.filter((contact) => `${contact.initials} ${contact.phones.join(', ')}` !== label));
+  function handleSnackbarOpen(severity: SnackBarSeverityType, message: string) {
+    setSnackbarState(true);
+    setSnackbarMessage({ severity, message });
+  }
+
+  function excludeContact(initials: string) {
+    setContactAndViewingArrangements((prev) =>
+      prev.filter((contact) => contact.initials !== initials));
   }
 
   function excludeFloorPlan(label: string) {
     setFloorPlans((prev) => prev.filter((floorPlan) => floorPlan.heading !== label));
   }
 
+  function handleAddNewContact(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const { phone1, phone2, phone3, initials } = Object.fromEntries(formData.entries()) as ContactDetailType;
+
+    const phoneNumbers = [phone1, phone2, phone3].filter(Boolean).map(phone => phone!.trim());
+
+    // filter phone numbers from undefined
+
+    const validate = contactsSchema.safeParse({ initials, phoneNumbers });
+
+    if (!validate.success) {
+      handleSnackbarOpen(`error`, validate.error.errors[0].message);
+      return;
+    }
+
+    setContactAndViewingArrangements((prevState) => [...prevState, { initials, phones: phoneNumbers }]);
+
+    e.currentTarget.reset();
+
+    handleSnackbarOpen(`success`, `A new contact "${initials} - (${[...phoneNumbers].toString()})" was successfully added.`);
+
+    // Use the rest of the form data and phoneNumbers as needed
+  }
+
   return (
     <>
-      <form className={`flex flex-col mt-9`}>
+      <SnackbarMUI severity={snackbarMessage.severity} message={snackbarMessage.message} state={{
+        open: snackbarState, setOpen:
+        setSnackbarState
+      }} />
+      <div className={`flex flex-col mt-9`}>
         <h2 className={`bg-clip-text text-transparent bg-linear-main-red font-bold text-2xl mb-10`}>Contact & Viewing
           Arrangements *</h2>
-        <p className={`leading-relaxed text-zinc-900`}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
-          illo odio quas quis. Cumque et ipsa libero magni maxime obcaecati <HighlightText
-            text={`possimus saepe. Impedit omnis,`} /> praesentium.</p>
+        <p className={`leading-relaxed text-zinc-900`}>Please provide your valid initials and phone number(s). These
+          details would help your potential customer to get in touch with you.</p>
         <div className={`mt-6 mb-9`}>
           <div className={`flex gap-3.5 items-center overflow-x-auto scrollbar-thin`}>
             {!contactAndViewingArrangements.length && (
-              <h2 className={`text-zinc-900 font-semibold`}>No contact and viewing arrangements added yet.</h2>
+              <h2 className={`text-zinc-900 font-semibold`}>No contact and viewing arrangements added yet. At least one
+                contact is required.</h2>
             )}
-            {(contactAndViewingArrangements && contactAndViewingArrangements.length > 0) && contactAndViewingArrangements.map((contact, index) => (
-              /*@ts-ignore*/
-              <TagBadge setItems={excludeContact}
-                        key={index} label={`${contact.initials} ${contact.phones.join(', ')}`} />
-            ))}
+            {(contactAndViewingArrangements && contactAndViewingArrangements.length > 0) && contactAndViewingArrangements.map((contact, index) => {
+                const formattedPhones = contact.phones.map((item) => item.slice(0, 3) + `..` + item.slice(8, -1));
+                /*@ts-ignore*/
+                return (
+                  <TagBadge tooltipText={`Click to delete. Details: ${contact.initials} - [${contact.phones.join(', ')}]`}
+                            setItems={() => excludeContact(contact.initials)}
+                            key={index} label={`${contact.initials} - [${formattedPhones.join(', ')}]`} />
+                );
+              }
+            )}
           </div>
         </div>
-        <div className={`mb-12`}>
+        <form onSubmit={handleAddNewContact} className={`mb-12`}>
           <Features featureHeading={`Contact Details`}>
-            <LabelAndInput labelStyle={`grey-and-small`} name={`initials`} placeholder={`e.g. John Doe`}
+            <LabelAndInput minLength={1} maxLength={100} labelStyle={`grey-and-small`} name={`initials`}
+                           placeholder={`e.g. John Doe`}
                            customClassNames={`bp-620:w-72 text-custom-medium`} label={`Initials`} inputType={`text`} />
-            <LabelAndInput labelStyle={`grey-and-small`} name={`phone`} placeholder={`e.g. +380...33`}
-                           customClassNames={`bp-620:w-72 text-custom-medium`} label={`Phone Number`}
-                           inputType={`number`} />
-            <div className={`mt-3`}>
-              <button type={`button`}
-                      className={`bg-clip-text text-lg text-transparent bg-linear-main-red font-bold`}>Add
+            <div className={`flex flex-col gap-2 justify-start`}>
+              <LabelAndInput maxLength={20} minLength={1} labelStyle={`grey-and-small`} name={`phone1`}
+                             placeholder={`e.g. +380123456789`}
+                             customClassNames={`bp-620:w-72 text-custom-medium`} label={`Phone Number`}
+                             inputType={`number`} />
+              {extraNumberInputs >= 1 && (
+                <LabelAndInput maxLength={20} minLength={1} labelStyle={`grey-and-small`} name={`phone2`}
+                               placeholder={`e.g. +380123456789`}
+                               customClassNames={`bp-620:w-72 text-custom-medium`} label={`Phone Number 2`}
+                               inputType={`number`} />
+              )}
+              {extraNumberInputs === 2 && (
+                <LabelAndInput maxLength={20} minLength={1} labelStyle={`grey-and-small`} name={`phone3`}
+                               placeholder={`e.g. +380123456789`}
+                               customClassNames={`bp-620:w-72 text-custom-medium`} label={`Phone Number 3`}
+                               inputType={`number`} />
+              )}
+              {extraNumberInputs <= 1 && (
+                <button
+                  onClick={() => setExtraNumberInputs((prevState) => extraNumberInputs === 2 ? extraNumberInputs : prevState + 1)}
+                  type={`button`}
+                  className={`text-normal text-left font-medium text-zinc-400`}>Add extra
+                  number
+                </button>
+              )}
+            </div>
+            <div className={`mt-3 flex items-center gap-2`}>
+              <button
+                className={`bg-clip-text text-lg text-transparent bg-linear-main-red font-bold
+                transition-all duration-200 hover:animate-pulse`}>Add Contact
               </button>
+
             </div>
           </Features>
-        </div>
+        </form>
         <div className={`mb-9`}>
           <h2 className={`text-2xl bg-clip-text text-transparent bg-linear-main-red font-bold mb-6`}>Price & Task
             History</h2>
@@ -156,7 +237,7 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
             )}
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 }
