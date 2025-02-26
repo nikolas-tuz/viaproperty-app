@@ -9,10 +9,11 @@ import ChooseImage from '@/components/UI/Input/ChooseImage/ChooseImage';
 import { activeStateType } from '@/components/Sell/SellInputContent';
 import { setActiveStateFunc } from '@/utils/functions/sell/setActiveStateFunc';
 import Button from '@/components/UI/Button/Button';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { SnackbarDataType } from '@/components/PropertyDescription/Layout/PropertyTags';
 import SnackbarMUI, { SnackBarSeverityType } from '@/components/UI/Snackbar/SnackbarMUI';
 import { contactsSchema } from '@/utils/schemas/sell/third-step/thirdFormSellSchemas';
+import { getLocalStorage, setToLocalStorage } from '@/utils/functions/setIntoLocalStorage';
 
 export type ContactAndViewingArrangementsType = {
   initials: string;
@@ -58,6 +59,11 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
 
   const [extraNumberInputs, setExtraNumberInputs] = useState(0);
 
+  useEffect(() => {
+    const propertyContactsField = getLocalStorage(`propertyContactDetails`);
+    if (propertyContactsField) setContactAndViewingArrangements(propertyContactsField);
+  }, []);
+
   function setActiveStateDeclaration(activeState: activeStateType) {
     scrollIntoViewFunc(`.sell-heading`);
     if (setActiveState) {
@@ -71,8 +77,10 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
   }
 
   function excludeContact(initials: string) {
-    setContactAndViewingArrangements((prev) =>
-      prev.filter((contact) => contact.initials !== initials));
+    const updatedContactDetails = contactAndViewingArrangements.filter((contact) => contact.initials !== initials);
+    setContactAndViewingArrangements(updatedContactDetails);
+
+    setToLocalStorage(`propertyContactDetails`, updatedContactDetails);
   }
 
   function excludeFloorPlan(label: string) {
@@ -86,8 +94,6 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
 
     const phoneNumbers = [phone1, phone2, phone3].filter(Boolean).map(phone => phone!.trim());
 
-    // filter phone numbers from undefined
-
     const validate = contactsSchema.safeParse({ initials, phoneNumbers });
 
     if (!validate.success) {
@@ -95,13 +101,25 @@ export default function ThirdForm({ setActiveState, defaultValues }: ThirdFormTy
       return;
     }
 
-    setContactAndViewingArrangements((prevState) => [...prevState, { initials, phones: phoneNumbers }]);
+    const contactDetails = [...contactAndViewingArrangements] as ContactAndViewingArrangementsType[];
 
-    e.currentTarget.reset();
+    for (const contact of contactDetails) {
+      if (contact.initials === initials) {
+        handleSnackbarOpen(`error`, `You cannot add a contact with the same initials.`);
+        return;
+      }
+      if (contact.phones.includes(`${phone1 || phone2 || phone3}`)) {
+        handleSnackbarOpen(`error`, `You cannot add the same phone number to another contact.`);
+        return;
+      }
+    }
+    contactDetails.push({ initials, phones: phoneNumbers });
+    setContactAndViewingArrangements(contactDetails);
+
+    setToLocalStorage(`propertyContactDetails`, contactDetails);
 
     handleSnackbarOpen(`success`, `A new contact "${initials} - (${[...phoneNumbers].toString()})" was successfully added.`);
-
-    // Use the rest of the form data and phoneNumbers as needed
+    e.currentTarget.reset();
   }
 
   return (
