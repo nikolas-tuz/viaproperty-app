@@ -18,8 +18,8 @@ export default function StarIcon({ state, size }: FilledStarType) {
             <defs>
               <linearGradient id="paint0_linear_383_3913" x1="-6" y1="17.677" x2="40.8" y2="17.677"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FB3838" />
-                <stop offset="1" stop-color="#F27155" />
+                <stop stopColor="#FB3838" />
+                <stop offset="1" stopColor="#F27155" />
               </linearGradient>
             </defs>
           </svg>
@@ -30,12 +30,12 @@ export default function StarIcon({ state, size }: FilledStarType) {
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="33" viewBox="0 0 35 33" fill="none">
             <path
               d="M15.1315 1.87347C15.9084 -0.51758 19.2911 -0.517581 20.068 1.87347L22.2707 8.65269C22.6181 9.722 23.6146 10.446 24.7389 10.446H31.867C34.3811 10.446 35.4264 13.6631 33.3925 15.1409L27.6257 19.3307C26.7161 19.9915 26.3355 21.163 26.6829 22.2323L28.8856 29.0115C29.6625 31.4025 26.9259 33.3908 24.8919 31.9131L19.1252 27.7233C18.2156 27.0624 16.9839 27.0624 16.0742 27.7233L10.3075 31.9131C8.27355 33.3908 5.53688 31.4025 6.31378 29.0115L8.51648 22.2323C8.86392 21.163 8.48331 19.9915 7.5737 19.3307L1.80695 15.1409C-0.227002 13.6631 0.818309 10.446 3.33241 10.446H10.4605C11.5848 10.446 12.5813 9.722 12.9288 8.65269L15.1315 1.87347Z"
-              fill="url(#paint0_linear_383_3917)" fill-opacity="0.2" />
+              fill="url(#paint0_linear_383_3917)" fillOpacity="0.2" />
             <defs>
               <linearGradient id="paint0_linear_383_3917" x1="-5.80029" y1="17.677" x2="40.9997" y2="17.677"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FB3838" />
-                <stop offset="1" stop-color="#F27155" />
+                <stop stopColor="#FB3838" />
+                <stop offset="1" stopColor="#F27155" />
               </linearGradient>
             </defs>
           </svg>
@@ -50,8 +50,8 @@ export default function StarIcon({ state, size }: FilledStarType) {
           <defs>
             <linearGradient id="paint0_linear_383_3927" x1="-4" y1="11.6769" x2="25.2" y2="11.6769"
                             gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FB3838" />
-              <stop offset="1" stop-color="#F27155" />
+              <stop stopColor="#FB3838" />
+              <stop offset="1" stopColor="#F27155" />
             </linearGradient>
           </defs>
         </svg>
@@ -61,12 +61,12 @@ export default function StarIcon({ state, size }: FilledStarType) {
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
             <path
               d="M9.85978 1.8166C10.3445 0.324747 12.4551 0.324745 12.9398 1.8166L14.3142 6.04636C14.5309 6.71354 15.1527 7.16525 15.8542 7.16525H20.3016C21.8702 7.16525 22.5224 9.17253 21.2534 10.0945L17.6553 12.7087C17.0878 13.121 16.8503 13.8519 17.0671 14.5191L18.4414 18.7488C18.9262 20.2407 17.2187 21.4813 15.9496 20.5593L12.3516 17.9451C11.784 17.5328 11.0155 17.5328 10.448 17.9451L6.84996 20.5593C5.58092 21.4813 3.87343 20.2407 4.35816 18.7488L5.73249 14.5191C5.94927 13.8519 5.71179 13.121 5.14426 12.7087L1.5462 10.0945C0.277157 9.17253 0.92936 7.16525 2.49799 7.16525H6.94543C7.64694 7.16525 8.26867 6.71354 8.48545 6.04636L9.85978 1.8166Z"
-              fill="url(#paint0_linear_383_3962)" fill-opacity="0.2" />
+              fill="url(#paint0_linear_383_3962)" fillOpacity="0.2" />
             <defs>
               <linearGradient id="paint0_linear_383_3962" x1="-3.2002" y1="11.6769" x2="25.9998" y2="11.6769"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FB3838" />
-                <stop offset="1" stop-color="#F27155" />
+                <stop stopColor="#FB3838" />
+                <stop offset="1" stopColor="#F27155" />
               </linearGradient>
             </defs>
           </svg>
@@ -77,12 +77,12 @@ export default function StarIcon({ state, size }: FilledStarType) {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 22 21" fill="none">
             <path
               d="M9.85978 1.8166C10.3445 0.324747 12.4551 0.324745 12.9398 1.8166L14.3142 6.04636C14.5309 6.71354 15.1527 7.16525 15.8542 7.16525H20.3016C21.8702 7.16525 22.5224 9.17253 21.2534 10.0945L17.6553 12.7087C17.0878 13.121 16.8503 13.8519 17.0671 14.5191L18.4414 18.7488C18.9262 20.2407 17.2187 21.4813 15.9496 20.5593L12.3516 17.9451C11.784 17.5328 11.0155 17.5328 10.448 17.9451L6.84996 20.5593C5.58092 21.4813 3.87343 20.2407 4.35816 18.7488L5.73249 14.5191C5.94927 13.8519 5.71179 13.121 5.14426 12.7087L1.5462 10.0945C0.277157 9.17253 0.92936 7.16525 2.49799 7.16525H6.94543C7.64694 7.16525 8.26867 6.71354 8.48545 6.04636L9.85978 1.8166Z"
-              fill="url(#paint0_linear_383_3962)" fill-opacity="0.2" />
+              fill="url(#paint0_linear_383_3962)" fillOpacity="0.2" />
             <defs>
               <linearGradient id="paint0_linear_383_3962" x1="-3.2002" y1="11.6769" x2="25.9998" y2="11.6769"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FB3838" />
-                <stop offset="1" stop-color="#F27155" />
+                <stop stopColor="#FB3838" />
+                <stop offset="1" stopColor="#F27155" />
               </linearGradient>
             </defs>
           </svg>
@@ -97,8 +97,8 @@ export default function StarIcon({ state, size }: FilledStarType) {
           <defs>
             <linearGradient id="paint0_linear_383_3927" x1="-4" y1="11.6769" x2="25.2" y2="11.6769"
                             gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FB3838" />
-              <stop offset="1" stop-color="#F27155" />
+              <stop stopColor="#FB3838" />
+              <stop offset="1" stopColor="#F27155" />
             </linearGradient>
           </defs>
         </svg>
