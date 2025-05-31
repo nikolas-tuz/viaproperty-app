@@ -28,7 +28,7 @@ export default function
         {type === `facebook` && (
           <Link href={href}>
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="21" viewBox="0 0 13 21" fill="none">
-              <g clip-path="url(#clip0_1003_3864)">
+              <g clipPath="url(#clip0_1003_3864)">
                 <path
                   d="M7.98025 20.4184V11.4818H10.9951L11.4433 7.9828H7.98025V5.75409C7.98025 4.74441 8.26156 4.05312 9.71066 4.05312H11.5468V0.933583C10.6534 0.837839 9.75542 0.791609 8.8569 0.795106C6.19205 0.795106 4.36242 2.42193 4.36242 5.40844V7.97626H1.36718V11.4752H4.36896V20.4184H7.98025Z"
                   fill="url(#paint0_linear_1003_3864)" />
@@ -36,8 +36,8 @@ export default function
               <defs>
                 <linearGradient id="paint0_linear_1003_3864" x1="1.36718" y1="10.6067" x2="11.5468"
                                 y2="10.6067" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
                 <clipPath id="clip0_1003_3864">
                   <rect width="11.2152" height="20.5612" fill="white"
@@ -57,8 +57,8 @@ export default function
               <defs>
                 <linearGradient id="paint0_linear_1003_3868" x1="2.10841" y1="10.753" x2="19.4849" y2="10.753"
                                 gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
               </defs>
             </svg>
@@ -68,7 +68,7 @@ export default function
         {type === `x` && (
           <Link href={href}>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <g clip-path="url(#clip0_1003_3872)">
+              <g clipPath="url(#clip0_1003_3872)">
                 <path
                   d="M14.1326 0.899414H16.7969L10.976 7.55284L17.8242 16.6048H12.4624L8.26326 11.1141L3.45745 16.6048H0.791732L7.01801 9.48805L0.448563 0.900138H5.94651L9.74236 5.91881L14.1326 0.899414ZM13.1979 15.0106H14.6742L5.14433 2.41037H3.56025L13.1979 15.0106Z"
                   fill="url(#paint0_linear_1003_3872)" />
@@ -76,8 +76,8 @@ export default function
               <defs>
                 <linearGradient id="paint0_linear_1003_3872" x1="0.448563" y1="8.75212" x2="17.8242" y2="8.75212"
                                 gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
                 <clipPath id="clip0_1003_3872">
                   <rect width="17.3757" height="17.3757" fill="white" transform="translate(0.448563 0.0649414)" />
@@ -99,8 +99,8 @@ export default function
               <defs>
                 <linearGradient id="paint0_linear_1003_3876" x1="0.172699" y1="9.5256" x2="18.8219" y2="9.5256"
                                 gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
               </defs>
             </svg>
@@ -110,28 +110,28 @@ export default function
         {type === `linkedin` && (
           <>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="11" viewBox="0 0 16 11" fill="none">
-              <path d="M2.02386 1.56738V8.80724" stroke="url(#paint0_linear_1003_3883)" stroke-width="2.89594"
-                    stroke-linecap="round" />
-              <path d="M6.3678 1.56738V8.80724" stroke="url(#paint1_linear_1003_3883)" stroke-width="2.89594"
-                    stroke-linecap="round" />
+              <path d="M2.02386 1.56738V8.80724" stroke="url(#paint0_linear_1003_3883)" strokeWidth="2.89594"
+                    strokeLinecap="round" />
+              <path d="M6.3678 1.56738V8.80724" stroke="url(#paint1_linear_1003_3883)" strokeWidth="2.89594"
+                    strokeLinecap="round" />
               <path
                 d="M6.3678 5.18731C6.3678 3.1881 7.98851 1.56738 9.98773 1.56738C11.9869 1.56738 13.6077 3.1881 13.6077 5.18731V8.80724"
-                stroke="url(#paint2_linear_1003_3883)" stroke-width="2.89594" stroke-linecap="round" />
+                stroke="url(#paint2_linear_1003_3883)" strokeWidth="2.89594" strokeLinecap="round" />
               <defs>
                 <linearGradient id="paint0_linear_1003_3883" x1="2.02386" y1="5.18731" x2="3.02386" y2="5.18731"
                                 gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
                 <linearGradient id="paint1_linear_1003_3883" x1="6.3678" y1="5.18731" x2="7.3678" y2="5.18731"
                                 gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
                 <linearGradient id="paint2_linear_1003_3883" x1="6.3678" y1="5.18731" x2="13.6077" y2="5.18731"
                                 gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
               </defs>
             </svg>
@@ -139,14 +139,14 @@ export default function
         )}
         {type === `google` && (
           <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 16 16" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M8 7V9.4H11.97C11.81 10.43 10.77 12.42 8 12.42C5.61 12.42 3.66 10.44 3.66 8C3.66 5.56 5.61 3.58 8 3.58C9.36 3.58 10.27 4.16 10.79 4.66L12.69 2.83C11.47 1.69 9.89 1 8 1C4.13 1 1 4.13 1 8C1 11.87 4.13 15 8 15C12.04 15 14.72 12.16 14.72 8.16C14.72 7.7 14.67 7.35 14.61 7H8Z"
                   fill="url(#paint0_linear_1074_7992)" />
             <defs>
               <linearGradient id="paint0_linear_1074_7992" x1="1" y1="2.36111" x2="16.3511" y2="2.46713"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00202A" />
-                <stop offset="1" stop-color="#00202A" stop-opacity="0.6" />
+                <stop stopColor="#00202A" />
+                <stop offset="1" stopColor="#00202A" stopOpacity="0.6" />
               </linearGradient>
             </defs>
           </svg>
