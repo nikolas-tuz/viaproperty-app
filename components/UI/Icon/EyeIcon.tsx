@@ -19,8 +19,8 @@ export default function EyeIcon({ open }: EyeIconType) {
             <defs>
               <linearGradient id="paint0_linear_1073_7978" x1="1" y1="4.84722" x2="23.6817" y2="8.01123"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00202A" />
-                <stop offset="1" stop-color="#00202A" stop-opacity="0.6" />
+                <stop stopColor="#00202A" />
+                <stop offset="1" stopColor="#00202A" stopOpacity="0.6" />
               </linearGradient>
             </defs>
           </svg>
@@ -36,8 +36,8 @@ export default function EyeIcon({ open }: EyeIconType) {
             <defs>
               <linearGradient id="paint0_linear_1073_7980" x1="1" y1="5.95833" x2="23.423" y2="9.92037"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00202A" />
-                <stop offset="1" stop-color="#00202A" stop-opacity="0.6" />
+                <stop stopColor="#00202A" />
+                <stop offset="1" stopColor="#00202A" stopOpacity="0.6" />
               </linearGradient>
             </defs>
           </svg>
