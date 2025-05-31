@@ -36,8 +36,8 @@ export default function LinkWithArrow({ href, label, style = `blue` }: LinkWithA
             <defs>
               <linearGradient id="paint0_linear_722_17286" x1="0.792969" y1="1.46123" x2="17.6515" y2="-3.63241"
                               gradientUnits="userSpaceOnUse">
-                <stop stop-color={style === `red` ? redColorIcon : blueColorIcon} />
-                <stop offset="1" stop-color={style === `red` ? redColorIcon : blueColorIcon} stop-opacity="0.6" />
+                <stop stopColor={style === `red` ? redColorIcon : blueColorIcon} />
+                <stop offset="1" stopColor={style === `red` ? redColorIcon : blueColorIcon} stop-opacity="0.6" />
               </linearGradient>
             </defs>
           </svg>

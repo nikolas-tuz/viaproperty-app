@@ -111,7 +111,7 @@ export default function AccountActivityIcon({ type, dollarColor = `white` }: Acc
           </linearGradient>
           <linearGradient id="paint1_linear_656_6158" x1="15.7734" y1="16.9613" x2="23.7398" y2="15.0298"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00202A" />
+            <stop stopColor="#00202A" />
             <stop offset="1" stopColor="#00202A" stopOpacity="0.6" />
           </linearGradient>
           <clipPath id="clip0_656_6158">

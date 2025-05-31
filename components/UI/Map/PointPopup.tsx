@@ -50,8 +50,8 @@ export default function PointPopup({ imageUrl, title, price, location, createdAt
           <defs>
             <linearGradient id="paint0_linear_1224_5845" x1="4.12646" y1="11.8198" x2="21.6234" y2="11.8198"
                             gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FB3838" />
-              <stop offset="1" stop-color="#F27155" />
+              <stop stopColor="#FB3838" />
+              <stop offset="1" stopColor="#F27155" />
             </linearGradient>
           </defs>
         </svg>

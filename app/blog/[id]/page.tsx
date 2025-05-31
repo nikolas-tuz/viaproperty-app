@@ -57,8 +57,8 @@ export default function BlogDescription(/*{  }: BlogDescriptionType*/) {
                     <defs>
                       <linearGradient id="paint0_linear_721_11964" x1="0.34375" y1="6.99994" x2="13.6771"
                                       y2="6.99994" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#FB3838" />
-                        <stop offset="1" stop-color="#F27155" />
+                        <stop stopColor="#FB3838" />
+                        <stop offset="1" stopColor="#F27155" />
                       </linearGradient>
                     </defs>
                   </svg>

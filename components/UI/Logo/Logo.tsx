@@ -27,8 +27,8 @@ export default function Logo({ label, link = false, href = `#` }: LogoType) {
               <defs>
                 <linearGradient id="paint0_linear_1290_8327" x1="9.14014" y1="24.6816" x2="47.1852" y2="24.6816"
                                 gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#FB3838" />
-                  <stop offset="1" stop-color="#F27155" />
+                  <stop stopColor="#FB3838" />
+                  <stop offset="1" stopColor="#F27155" />
                 </linearGradient>
               </defs>
             </svg>

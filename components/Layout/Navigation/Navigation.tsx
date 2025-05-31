@@ -64,8 +64,8 @@ export default function Navigation(/*{  }: NavigationType*/) {
             <svg onClick={() => setNavigationOpen(true)} className={``} xmlns="http://www.w3.org/2000/svg" width="32"
                  height="32" viewBox="0 0 24 24"
                  fill="none">
-              <path d="M4 5H20M18 12H6M8 19H16" stroke="#FF3030" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
+              <path d="M4 5H20M18 12H6M8 19H16" stroke="#FF3030" strokeWidth="1.5" strokeLinecap="round"
+                    strokeLinejoin="round" />
             </svg>
           </div>
           <div className={`bp-1178:flex gap-12 mr-20 hidden items-center`}>
