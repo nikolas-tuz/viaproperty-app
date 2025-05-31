@@ -72,7 +72,7 @@ export default function
 
   useEffect(() => {
     if (windowExists()) {
-      const images = window.localStorage.getItem('images');
+      const images = window.sessionStorage.getItem('images');
       const mapCoordinates = window.localStorage.getItem('mapCoordinates');
       if (images) {
         setImages(() => JSON.parse(images));

@@ -22,7 +22,7 @@ export default function ChooseImage({ max, min, imagesState, required = true }: 
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const storedImages = window.localStorage.getItem('images');
+      const storedImages = window.sessionStorage.getItem('images');
       if (storedImages) {
         setImages(JSON.parse(storedImages));
       }
@@ -31,7 +31,7 @@ export default function ChooseImage({ max, min, imagesState, required = true }: 
 
   function setImagesToLocalStorage(images: ImagesArrayType[]) {
     if (typeof window !== 'undefined') {
-      window.localStorage.setItem('images', JSON.stringify(images));
+      window.sessionStorage.setItem('images', JSON.stringify(images));
     }
   }
 
