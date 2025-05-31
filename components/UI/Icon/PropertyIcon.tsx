@@ -17,7 +17,7 @@ export default function PropertyIcon({ activePropertyType = false, type }: HomeI
         <>
           <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                viewBox="0 0 18 18" fill="none">
-            <g clip-path="url(#clip0_1003_1523)">
+            <g clipPath="url(#clip0_1003_1523)">
               {activePropertyType ? (
                 <>
                   <path
@@ -45,7 +45,7 @@ export default function PropertyIcon({ activePropertyType = false, type }: HomeI
       content = (
         <>
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="21" viewBox="0 0 21 17" fill="none">
-            <g clip-path="url(#clip0_1003_4328)">
+            <g clipPath="url(#clip0_1003_4328)">
               {activePropertyType ? (
                 <>
                   <path
@@ -73,7 +73,7 @@ export default function PropertyIcon({ activePropertyType = false, type }: HomeI
       content = (
         <>
           <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 18 17" fill="none">
-            <g clip-path="url(#clip0_1003_7648)">
+            <g clipPath="url(#clip0_1003_7648)">
               {activePropertyType ? (
                 <>
                   <path
