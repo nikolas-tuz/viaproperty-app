@@ -14,8 +14,8 @@ export default function PasswordIcon(/*{  }: PasswordIconType*/) {
         <defs>
           <linearGradient id="paint0_linear_486_4308" x1="1.875" y1="7.26563" x2="28.5289" y2="12.2607"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00202A" />
-            <stop offset="1" stop-color="#00202A" stop-opacity="0.6" />
+            <stop stopColor="#00202A" />
+            <stop offset="1" stopColor="#00202A" stopOpacity="0.6" />
           </linearGradient>
         </defs>
       </svg>
