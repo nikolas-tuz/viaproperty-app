@@ -26,21 +26,21 @@ export default function AppSettingsIcons({ icon }: AppSettingsIconsType) {
     <>
       <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
         <path d="M4.33365 5.41667H11.917M9.75032 3.25V5.41667C9.75032 10.2028 7.32473 14.0833 4.33365 14.0833"
-              stroke="url(#paint0_linear_791_8035)" stroke-width="2.16667" stroke-linecap="round"
-              stroke-linejoin="round" />
+              stroke="url(#paint0_linear_791_8035)" strokeWidth="2.16667" strokeLinecap="round"
+              strokeLinejoin="round" />
         <path
           d="M5.41699 9.75C5.41699 12.0727 8.61499 13.9837 12.6753 14.0833M13.0003 21.6667L17.3337 11.9167L21.667 21.6667M20.692 19.5H13.9753"
-          stroke="url(#paint1_linear_791_8035)" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round" />
+          stroke="url(#paint1_linear_791_8035)" strokeWidth="2.16667" strokeLinecap="round" strokeLinejoin="round" />
         <defs>
           <linearGradient id="paint0_linear_791_8035" x1="4.33365" y1="8.66667" x2="11.917" y2="8.66667"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FB3838" />
-            <stop offset="1" stop-color="#F27155" />
+            <stop stopColor="#FB3838" />
+            <stop offset="1" stopColor="#F27155" />
           </linearGradient>
           <linearGradient id="paint1_linear_791_8035" x1="5.41699" y1="15.7083" x2="21.667" y2="15.7083"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FB3838" />
-            <stop offset="1" stop-color="#F27155" />
+            <stop stopColor="#FB3838" />
+            <stop offset="1" stopColor="#F27155" />
           </linearGradient>
         </defs>
       </svg>
@@ -52,19 +52,19 @@ export default function AppSettingsIcons({ icon }: AppSettingsIconsType) {
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path
           d="M8.557 13.5H4.682C4.16859 13.5029 3.67721 13.7089 3.3152 14.073C2.95319 14.437 2.74999 14.9296 2.75 15.443V19.318C2.74974 19.5718 2.79953 19.8231 2.89653 20.0577C2.99353 20.2922 3.13583 20.5053 3.31528 20.6847C3.49474 20.8642 3.70783 21.0065 3.94235 21.1035C4.17687 21.2005 4.42821 21.2503 4.682 21.25H8.557C9.07048 21.2505 9.56324 21.0475 9.92726 20.6853C10.2913 20.3232 10.4969 19.8315 10.499 19.318V15.443C10.4993 15.1879 10.4492 14.9353 10.3517 14.6995C10.2542 14.4638 10.1112 14.2496 9.93079 14.0692C9.75041 13.8888 9.53622 13.7458 9.30048 13.6483C9.06475 13.5508 8.8121 13.5007 8.557 13.501M8.557 2.75H4.682C4.42821 2.74974 4.17687 2.79953 3.94235 2.89653C3.70783 2.99353 3.49474 3.13583 3.31528 3.31528C3.13583 3.49474 2.99353 3.70783 2.89653 3.94235C2.79953 4.17687 2.74974 4.42821 2.75 4.682V8.557C2.74947 9.07048 2.95253 9.56324 3.31468 9.92726C3.67683 10.2913 4.16852 10.4969 4.682 10.499H8.557C8.8121 10.4993 9.06475 10.4492 9.30048 10.3517C9.53622 10.2542 9.75041 10.1112 9.93079 9.93079C10.1112 9.75041 10.2542 9.53622 10.3517 9.30048C10.4492 9.06475 10.4993 8.8121 10.499 8.557V4.682C10.4969 4.16852 10.2913 3.67683 9.92726 3.31468C9.56324 2.95253 9.07048 2.74947 8.557 2.75ZM19.318 2.75H15.443C14.9295 2.74947 14.4368 2.95253 14.0727 3.31468C13.7087 3.67683 13.5031 4.16852 13.501 4.682V8.557C13.5013 9.07197 13.706 9.56577 14.0701 9.92991C14.4342 10.294 14.928 10.4987 15.443 10.499H19.318C19.8315 10.4969 20.3232 10.2913 20.6853 9.92726C21.0475 9.56324 21.2505 9.07048 21.25 8.557V4.682C21.2503 4.42821 21.2005 4.17687 21.1035 3.94235C21.0065 3.70783 20.8642 3.49474 20.6847 3.31528C20.5053 3.13583 20.2922 2.99353 20.0577 2.89653C19.8231 2.79953 19.5718 2.74974 19.318 2.75Z"
-          stroke="url(#paint0_linear_791_8046)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M17.368 13.817V20.933M13.817 17.383H20.933" stroke="url(#paint1_linear_791_8046)" stroke-width="1.5"
-              stroke-miterlimit="10" stroke-linecap="round" />
+          stroke="url(#paint0_linear_791_8046)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M17.368 13.817V20.933M13.817 17.383H20.933" stroke="url(#paint1_linear_791_8046)" strokeWidth="1.5"
+              strokeMiterlimit="10" strokeLinecap="round" />
         <defs>
           <linearGradient id="paint0_linear_791_8046" x1="2.75" y1="12" x2="21.25" y2="12"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FB3838" />
-            <stop offset="1" stop-color="#F27155" />
+            <stop stopColor="#FB3838" />
+            <stop offset="1" stopColor="#F27155" />
           </linearGradient>
           <linearGradient id="paint1_linear_791_8046" x1="13.817" y1="17.375" x2="20.933" y2="17.375"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FB3838" />
-            <stop offset="1" stop-color="#F27155" />
+            <stop stopColor="#FB3838" />
+            <stop offset="1" stopColor="#F27155" />
           </linearGradient>
         </defs>
       </svg>
@@ -82,13 +82,13 @@ export default function AppSettingsIcons({ icon }: AppSettingsIconsType) {
           fill="url(#paint1_linear_791_8052)" />
         <defs>
           <linearGradient id="paint0_linear_791_8052" x1="3" y1="12" x2="12" y2="12" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FB3838" />
-            <stop offset="1" stop-color="#F27155" />
+            <stop stopColor="#FB3838" />
+            <stop offset="1" stopColor="#F27155" />
           </linearGradient>
           <linearGradient id="paint1_linear_791_8052" x1="9" y1="12" x2="20.7913" y2="12"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FB3838" />
-            <stop offset="1" stop-color="#F27155" />
+            <stop stopColor="#FB3838" />
+            <stop offset="1" stopColor="#F27155" />
           </linearGradient>
         </defs>
       </svg>
